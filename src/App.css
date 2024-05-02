@@ -1,0 +1,70 @@
+.App {
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffeb38;
+}
+
+
+.imageView {
+  width: 512px;
+  height: 512px;
+  border: 15px grey ridge;
+  background-color: black;
+}
+
+button {
+  /* margin-top: 10px; */
+  padding: 10px 20px;
+  background-color: #181818;
+  color: floralwhite;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 30%;
+  height:25%;
+  margin:50px;
+  font-family: sans-serif;
+}
+
+button:hover {
+  background-color: rgb(3, 26, 50);
+}
+
+label {
+  display: inline-block;
+  cursor: pointer;  
+  width: 120px;
+  padding: inherit;
+  margin-left: -20px;
+}
+
+#file-upload {
+  display: none;
+}
+
+.header {
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--black-2);
+  font-size: 3rem;
+  font-weight: 1000;
+  font-family: sans-serif;
+  margin-bottom: 0;
+}
+
+h3 {
+    color: var(--black-2);
+    font-size: 2rem;
+    font-weight: 1000;
+    font-family: sans-serif;
+    margin-bottom: 0;
+}
+
+.imagefile {
+  width: 512px;
+  height: 512px;
+  object-fit: cover;
+}
