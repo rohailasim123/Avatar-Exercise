@@ -14,6 +14,7 @@ function App() {
 
 
 	const handleImageChange = (e) => {
+		setMessage("");
 		const file = e.target.files[0];
 		const reader = new FileReader();
 		
@@ -92,14 +93,14 @@ function App() {
 			
 			// Convert to required format: make pixels outside circle transparent
 			if ( !within ) {
-				if (data[i+3] !== 0 && data[i+3] !== 255) {
+				if (data[i+3] !== 0 && (data[i] > 0  || data[i+1] > 0 || data[i+2] > 0)) {
 					setMessage("Invalid Image: Avatar must be within the circle")
 					return;
 				}
 				// data[i] = 0;
 				// data[i+1] = 0;
 				// data[i+2] = 0;
-				data[i+3] = 0;
+				// data[i+3] = 0;
 			}
 			
 			// Check if colors give a happy feeling
