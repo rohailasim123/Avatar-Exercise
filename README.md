@@ -16,4 +16,4 @@ A brief description of how these tasks were solved:
   4. In another branch on the repository called autoconv, the image is automatically converted into the required format. If the image is bigger than 512x512, then the central 512x512 portion of the image is included. If           pixels outside the circle are non-transparent, they are changed to be transparent.
 
 ## How to run
-Clone the repository and choose the branch/version to run. Run npm install and npm start to run the local server and view the page at https://localhost:3000.
+Clone the repository and choose the branch/version to run. Run `npm install` and `npm start` to run the local server and view the page at `https://localhost:3000`.
