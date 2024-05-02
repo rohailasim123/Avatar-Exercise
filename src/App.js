@@ -77,6 +77,7 @@ function App() {
 		
 		let imageData = {};
 		if (!invalidSize) {
+			ctx.drawImage(imageName, 0, 0);
 			imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		} else {
 			// Create 512 x 512 from the center of the image
@@ -89,11 +90,11 @@ function App() {
 			// unscaled image
 			// ctx.drawImage(imageName, middle_x - 256, middle_y - 256);
 
-			imageData = ctx.getImageData(middle_x - 256, middle_y - 256, middle_x + 256, middle_y + 256);
+			imageData = ctx.getImageData(middle_x - 256, middle_y - 256, 512, 512);
 		}
 		const data = imageData.data;
+		// console.log(imageData.data);
 
-		// console.log(data);
 
 		// Check if non-transparent pixels are within the circle
 		let happyPixels = 0;
