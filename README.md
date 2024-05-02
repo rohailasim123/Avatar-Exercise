@@ -17,3 +17,5 @@ A brief description of how these tasks were solved:
 
 ## How to run
 Clone the repository and choose the branch/version to run. Run `npm install` and `npm start` to run the local server and view the page at `https://localhost:3000`.
+
+Demo videos included
