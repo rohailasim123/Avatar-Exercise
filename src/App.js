@@ -59,14 +59,14 @@ function App() {
 		const canvas = document.createElement('canvas');
 		const ctx = canvas.getContext('2d');
 		
-		canvas.width = imageName.width;
-		canvas.height = imageName.height;
+		canvas.width = 512;
+		canvas.height = 512;
 		
 		// Check if image is 512 x 512
 		let invalidSize = false
-		if (!(canvas.width === 512 && canvas.height === 512)) {
+		if (!(imageName.width === 512 && imageName.height === 512)) {
 			console.log("Invalid Size");
-			if (canvas.width < 512 || canvas.height < 512) {
+			if (imageName.width < 512 || imageName.height < 512) {
 				setMessage("Invalid Image: Avatar must be 512 x 512");
 				return;
 			}
@@ -74,15 +74,20 @@ function App() {
 		}
 		
 		
-		ctx.drawImage(imageName, 0, 0);
-
-		const imageData = {};
+		
+		let imageData = {};
 		if (!invalidSize) {
 			imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		} else {
 			// Create 512 x 512 from the center of the image
 			const middle_x = Math.floor(canvas.width / 2);
 			const middle_y = Math.floor(canvas.height / 2);
+
+			// scaled image
+			ctx.drawImage(imageName, middle_x - 256, middle_y - 256, 512, 512);
+
+			// unscaled image
+			// ctx.drawImage(imageName, middle_x - 256, middle_y - 256);
 
 			imageData = ctx.getImageData(middle_x - 256, middle_y - 256, middle_x + 256, middle_y + 256);
 		}
@@ -151,7 +156,7 @@ function App() {
 					Upload Image
 				</label>
 			</button>
-			<input id="file-upload" type="file"   onChange={handleImageChange} accept="image/png" />
+			<input id="file-upload" type="file"   onChange={handleImageChange} accept="image/*" />
 			<button onClick={uploadImage}>Set Avatar</button>
 			<br />
 			<h4 className='messages'>{message}</h4>
