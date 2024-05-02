@@ -63,15 +63,29 @@ function App() {
 		canvas.height = imageName.height;
 		
 		// Check if image is 512 x 512
+		let invalidSize = false
 		if (!(canvas.width === 512 && canvas.height === 512)) {
 			console.log("Invalid Size");
-			setMessage("Invalid Image: Avatar must be 512 x 512");
-			return;
+			if (canvas.width < 512 || canvas.height < 512) {
+				setMessage("Invalid Image: Avatar must be 512 x 512");
+				return;
+			}
+			invalidSize = true;
 		}
 		
 		
 		ctx.drawImage(imageName, 0, 0);
-		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+		const imageData = {};
+		if (!invalidSize) {
+			imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		} else {
+			// Create 512 x 512 from the center of the image
+			const middle_x = Math.floor(canvas.width / 2);
+			const middle_y = Math.floor(canvas.height / 2);
+
+			imageData = ctx.getImageData(middle_x - 256, middle_y - 256, middle_x + 256, middle_y + 256);
+		}
 		const data = imageData.data;
 
 		// console.log(data);
@@ -92,10 +106,10 @@ function App() {
 			
 			// Convert to required format: make pixels outside circle transparent
 			if ( !within ) {
-				if (data[i+3] !== 0 && data[i+3] !== 255) {
-					setMessage("Invalid Image: Avatar must be within the circle")
-					return;
-				}
+				// if (data[i+3] !== 0 && data[i+3] !== 255) {
+					// setMessage("Invalid Image: Avatar must be within the circle")
+					// return;
+				// }
 				// data[i] = 0;
 				// data[i+1] = 0;
 				// data[i+2] = 0;
